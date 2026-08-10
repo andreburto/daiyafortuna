@@ -1,0 +1,13 @@
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+.terraform.lock.hcl
+terraform.tfvars
+*.tfvars
+crash.log
+*.tfplan
+
+# Local Environment
+.DS_Store
+.env

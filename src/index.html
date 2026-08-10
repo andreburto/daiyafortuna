@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counting Our Days Without Daiya</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000000;
+            color: #df0000;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            display: table;
+        }
+
+        .row {
+            display: table-row;
+        }
+
+        .cell {
+            display: table-cell;
+            vertical-align: middle;
+            padding: 20px;
+        }
+
+        .image-cell img {
+            display: block;
+            max-width: 300px;
+            height: auto;
+        }
+
+        .content-cell {
+            text-align: left;
+        }
+
+        h1 {
+            margin: 0 0 20px 0;
+            font-size: 1.8em;
+        }
+
+        .timer {
+            font-size: 2.2em;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+
+        .links {
+            margin-top: 30px;
+            min-height: 50px;
+        }
+
+        a {
+            color: #ff0000;
+        }
+
+        a:visited {
+            color: #ff0000;
+        }
+
+        a:hover {
+            color: #ff0000;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="cell image-cell">
+                <img src="daiya_smile.png" alt="Daiya Fortuna" id="daiya-image">
+            </div>
+            <div class="cell content-cell">
+                <div class="header" id="header">
+                  <h1>Counting Our Days Without Daiya</h1>
+                </div>
+                <div class="timer" id="timer">
+                    <!-- Timer will be inserted here -->
+                </div>
+                <div class="links" id="links">
+                    <p>
+                      Daiya's latest Tweet, <span id="latest-tweet-date"></span>:<br>
+                      <a href="https://x.com/DaiyaFortuna/status/2086554534328062045" target="_blank" id="latest-tweet-link">https://x.com/DaiyaFortuna/status/2086554534328062045</a>
+                    </p>
+                </div>
+                <div class="links" id="morelinks">
+                    Daiya Links: <a href="https://beacons.ai/daiyafortuna" target="_blank">beacons.ai/daiyafortuna</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Set the start date to the date of Daiya's latest tweet
+        const startDate = new Date('2026-08-10T00:58:00-07:00');
+        const latestTweetLink = 'https://x.com/Daiyapping/status/2086723947136180487';
+
+        function updateTimer() {
+            const now = new Date();
+            const diff = now - startDate;
+
+            // Calculate time components
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            // Format the display
+            const timerElement = document.getElementById('timer');
+            timerElement.textContent = `${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`;
+        }
+
+        // Set the latest tweet date and link
+        document.getElementById('latest-tweet-date').textContent = startDate.toLocaleString('en-US', { timeZone: 'America/Los_Angeles', dateStyle: 'long', timeStyle: 'short' });
+        document.getElementById('latest-tweet-link').href = latestTweetLink;
+        document.getElementById('latest-tweet-link').innerText = latestTweetLink;
+
+        // Function to get browser width and set container width
+        function setBrowserWidth() {
+            const browserWidth = window.innerWidth;
+            const container = document.querySelector('.container');
+            container.style.width = browserWidth + 'px';
+            
+            // Center the row within the container
+            const row = document.querySelector('.row');
+            row.style.display = 'table-row';
+            row.style.margin = '0 auto';
+            container.style.marginLeft = 'auto';
+            container.style.marginRight = 'auto';
+            
+            // Center the daiya-image within its div
+            const daiyaImage = document.getElementById('daiya-image');
+            daiyaImage.style.float = 'right';
+        }
+
+        // Set width on load and on window resize
+        setBrowserWidth();
+        window.addEventListener('resize', setBrowserWidth);
+
+        // Update immediately and then every second
+        updateTimer();
+        setInterval(updateTimer, 1000);
+    </script>
+</body>
+</html>
