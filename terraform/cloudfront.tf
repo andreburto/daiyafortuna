@@ -11,11 +11,6 @@ resource "aws_cloudfront_distribution" "daiya" {
 
   aliases = [var.domain_url]
 
-  # logging_config {
-  #   include_cookies = false
-  #   bucket          = aws_s3_bucket.daiya_logs.bucket_regional_domain_name
-  # }
-
   default_cache_behavior {
     allowed_methods  = ["GET", "HEAD", "OPTIONS"]
     cached_methods   = ["GET", "HEAD"]
