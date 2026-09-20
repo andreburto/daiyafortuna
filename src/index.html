@@ -99,8 +99,8 @@
 
     <script>
         // Set the start date to the date of Daiya's latest tweet
-        const startDate = new Date('2026-09-07T15:29:00-07:00');
-        const latestTweetLink = 'https://x.com/DaiyaFortuna/status/2097089954241556966';
+        const startDate = new Date('2026-09-09T22:18:00-07:00');
+        const latestTweetLink = 'https://x.com/Daiyapping/status/2097917596347539919';
 
         function updateTimer() {
             const now = new Date();
@@ -114,7 +114,7 @@
 
             // Format the display
             const timerElement = document.getElementById('timer');
-            timerElement.textContent = `${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`;
+            timerElement.textContent = `${days} days, ${String(hours).padStart(2, '0')} hours, ${String(minutes).padStart(2, '0')} minutes, ${String(seconds).padStart(2, '0')} seconds`;
         }
 
         // Set the latest tweet date and link
